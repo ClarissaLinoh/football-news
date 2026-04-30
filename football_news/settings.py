@@ -33,6 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "football-news-ashy.vercel.app"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://football-news-ashy.vercel.app/",
+]
 
 # Application definition
 
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'football_news.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
