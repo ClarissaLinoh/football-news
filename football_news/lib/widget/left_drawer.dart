@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:football_news/screens/menu.dart';
+import 'package:football_news/screens/news_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -54,9 +55,24 @@ class LeftDrawer extends StatelessWidget {
               once the page is created.
               */
             },
-          )
+          ),
+          ListTile(
+              leading: const Icon(Icons.add_reaction_rounded),
+              title: const Text('News List'),
+              onTap: () {
+                  // Route to news list page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const NewsEntryListPage()),
+                  );
+              },
+          ),
         ],
       ),
     );
   }
 }
+
+// Add this import at the top
+
+// Add this ListTile in your drawer
