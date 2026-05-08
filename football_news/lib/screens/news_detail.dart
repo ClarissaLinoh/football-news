@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:football_news/models/news_entry.dart';
+import 'package:flutter/foundation.dart';
 
 class NewsDetailPage extends StatelessWidget {
   final NewsEntry news;
@@ -8,8 +9,8 @@ class NewsDetailPage extends StatelessWidget {
 
   String _formatDate(DateTime date) {
     // Simple date formatter without intl package
-    final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return '${date.day} ${months[date.month - 1]} ${date.year}, ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
   }
 
@@ -26,9 +27,9 @@ class NewsDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Thumbnail image
-            if (news.thumbnail?.isNotEmpty == true) //change
+            if (news.thumbnail != null && news.thumbnail!.isNotEmpty)
               Image.network(
-                'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(news.thumbnail!)}', //change
+                '${kIsWeb ? "http://localhost:8000" : "http://10.0.2.2:8000"}/proxy-image/?url=${Uri.encodeComponent(news.thumbnail!)}',
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
@@ -40,7 +41,7 @@ class NewsDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-            
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -120,7 +121,7 @@ class NewsDetailPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
+
                   const Divider(height: 32),
 
                   // Full content

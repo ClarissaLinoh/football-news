@@ -12,7 +12,7 @@ class NewsEntry {
     String id;
     String title;
     String content;
-    Category category;
+    String category;
     String? thumbnail;
     int newsViews;
     DateTime createdAt;
@@ -32,22 +32,22 @@ class NewsEntry {
     });
 
     factory NewsEntry.fromJson(Map<String, dynamic> json) => NewsEntry(
-        id: json["id"],
-        title: json["title"],
-        content: json["content"],
-        category: categoryValues.map[json["category"]]!,
-        thumbnail: json["thumbnail"],
-        newsViews: json["news_views"],
-        createdAt: DateTime.parse(json["created_at"]),
-        isFeatured: json["is_featured"],
-        userId: json["user_id"],
+      id: json["id"],
+      title: json["title"],
+      content: json["content"],
+      category: json["category"],
+      thumbnail: json["thumbnail"],
+      newsViews: json["news_views"],
+      createdAt: DateTime.parse(json["created_at"]),
+      isFeatured: json["is_featured"],
+      userId: json["user_id"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "content": content,
-        "category": categoryValues.reverse[category],
+        "category": category,
         "thumbnail": thumbnail,
         "news_views": newsViews,
         "created_at": createdAt.toIso8601String(),
